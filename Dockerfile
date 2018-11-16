@@ -1,6 +1,6 @@
 FROM openjdk:8-alpine
 
-ENV SONARQUBE_SCANNER_VERSION "3.1.0.1141"
+ENV SONARQUBE_SCANNER_VERSION "3.2.0.1227"
 
 LABEL maintainer="Willie Loyd Tandingan <n3v3rf411@gmail.com>"
 
@@ -9,8 +9,8 @@ RUN addgroup -g 1000 sonar && \
 
 
 RUN set -x && \
-  apk add --no-cache  curl grep sed unzip && \
-  curl --insecure -o ./sonarscanner.zip -L https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONARQUBE_SCANNER_VERSION}-linux.zip && \
+  apk add --no-cache curl grep sed unzip nodejs nodejs-npm && \
+  curl --insecure -o ./sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONARQUBE_SCANNER_VERSION}-linux.zip && \
   unzip sonarscanner.zip && \
   rm sonarscanner.zip && \
   rm sonar-scanner-${SONARQUBE_SCANNER_VERSION}-linux/jre -rf && \
